@@ -158,6 +158,7 @@ GEM
     os (0.9.6)
     plist (3.3.0)
     public_suffix (2.0.5)
+    puma (3.10.0)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -255,6 +256,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  puma
   rails
   sinatra
   spaceship
