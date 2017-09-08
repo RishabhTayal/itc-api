@@ -31,6 +31,7 @@ get '/ratings' do
 		{
 			id: review.id,
 			title: review.title,
+			rating: review.rating,
 			review: review.review,
 			store_front: review.store_front,
 			total_views: review.total_views,
