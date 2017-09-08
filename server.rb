@@ -36,7 +36,13 @@ get '/ratings' do
 			store_front: review.store_front,
 			total_views: review.total_views,
 			raw_developer_response: review.raw_developer_response,
-			developer_response: review.developer_response
+			developer_response: {
+				id: review.developer_response.id,
+				response: review.developer_response.response,
+				last_modified: review.developer_response.last_modified,
+				hidden: review.developer_response.hidden,
+      			state: review.developer_response.state
+			}
 		}
 	}.to_json
 end
