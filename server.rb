@@ -15,8 +15,9 @@ get '/' do
 end
 
 get '/ratings' do
+	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
-	ratings = Spaceship::Tunes::Application.find('com.rtayal.ChatApp').ratings
+	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
 	# ratings.ratings.reviews("US").to_json
 	# ratings.collect { |r|
 	# 	{
