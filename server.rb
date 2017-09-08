@@ -25,6 +25,7 @@ get '/ratings' do
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
 	ratings.reviews("US").collect { |review|
 		{
+			id: review.id
 			title: review.title,
 			review: review.review,
 			total_views: review.total_views,
