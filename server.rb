@@ -2,7 +2,8 @@ require 'sinatra'
 require 'spaceship'
 require 'json'
 
-get '/' do
+# Get list of apps
+get '/apps' do
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
 	all_apps = Spaceship::Tunes::Application.all
 	all_apps.collect { |a|
@@ -14,6 +15,7 @@ get '/' do
 	}.to_json
 end
 
+# Get list of ratings for a specified app with bundle_id
 get '/ratings' do
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
@@ -29,6 +31,7 @@ get '/ratings' do
 	}.to_json
 end
 
+# Add a new response to a rating
 post '/response' do
 	rating_id = params[:rating_id]
 	bundle_id = params[:bundle_id]
@@ -36,5 +39,4 @@ post '/response' do
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.ratings.sendResponse(rating_id, response).to_json
-	# body app.ratings.average_ratin.to_json
 end
