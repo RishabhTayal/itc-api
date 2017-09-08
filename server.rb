@@ -6,6 +6,9 @@ require 'json'
 get '/apps' do
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
 	all_apps = Spaceship::Tunes::Application.all
+	all_apps = all_apps.sort { |x, y|
+		x.name <=> y.name
+	}
 	all_apps.collect { |a|
 		{
 			name: a.name,
