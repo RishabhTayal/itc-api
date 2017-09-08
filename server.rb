@@ -18,12 +18,6 @@ get '/ratings' do
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
-	# ratings.ratings.reviews("US").to_json
-	# ratings.collect { |r|
-	# 	{
-	# 		reviews: r.reviews("US")
-	# 	}
-	# }.to_json
 	ratings.reviews("US").collect { |review|
 		{
 			title: review.title,
@@ -33,5 +27,4 @@ get '/ratings' do
 			developer_response: review.developer_response
 		}
 	}.to_json
-	# ratings.to_json
 end
