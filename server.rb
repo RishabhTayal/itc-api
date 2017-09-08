@@ -21,13 +21,18 @@ end
 # Get list of ratings for a specified app with bundle_id
 get '/ratings' do
 	bundle_id = params[:bundle_id]
+	store_front = params[:store_front]
+	if store_front == nil 
+		store_front = ""
+	end
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
-	ratings.reviews("US").collect { |review|
+	ratings.reviews(store_front).collect { |review|
 		{
 			id: review.id,
 			title: review.title,
 			review: review.review,
+			store_front: review.store_front,
 			total_views: review.total_views,
 			raw_developer_response: review.raw_developer_response,
 			developer_response: review.developer_response
