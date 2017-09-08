@@ -24,6 +24,7 @@ get '/ratings' do
 	ratings.reviews("US").collect { |review|
 		{
 			title: review.title,
+			review: review.review,
 			developer_response: review.raw_developer_response
 		}
 	}.to_json
