@@ -28,3 +28,13 @@ get '/ratings' do
 		}
 	}.to_json
 end
+
+post '/response' do
+	rating_id = params[:rating_id]
+	bundle_id = params[:bundle_id]
+	response = params[:response_text]
+	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
+	app = Spaceship::Tunes::Application.find(bundle_id)
+	body app.ratings.sendResponse(rating_id, response).to_json
+	# body app.ratings.average_ratin.to_json
+end
