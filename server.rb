@@ -2,6 +2,13 @@ require 'sinatra'
 require 'spaceship'
 require 'json'
 
+# Login user
+post '/login' do
+	 Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
+	 app = Spaceship::Tunes::Application.all[0]
+	 return { success: true }.to_json
+end
+
 # Get list of apps
 get '/apps' do
 	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
