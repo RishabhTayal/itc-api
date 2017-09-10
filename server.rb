@@ -4,9 +4,11 @@ require 'json'
 
 # Login user
 post '/login' do
-	 Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
-	 app = Spaceship::Tunes::Application.all[0]
-	 return { success: true }.to_json
+	username = params[:username]
+	password = params[:password]
+	Spaceship::Tunes.login(username, password)
+	app = Spaceship::Tunes::Application.all[0]
+	return { success: true }.to_json
 end
 
 # Get list of apps
