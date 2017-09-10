@@ -13,7 +13,9 @@ end
 
 # Get list of apps
 get '/apps' do
-	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
+	username = params[:username]
+	password = params[:password]
+	Spaceship::Tunes.login(username, password)
 	all_apps = Spaceship::Tunes::Application.all
 	all_apps = all_apps.sort { |x, y|
 		x.name <=> y.name
@@ -29,12 +31,14 @@ end
 
 # Get list of ratings for a specified app with bundle_id
 get '/ratings' do
+	username = params[:username]
+	password = params[:password]
 	bundle_id = params[:bundle_id]
 	store_front = params[:store_front]
 	if store_front == nil 
 		store_front = ""
 	end
-	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
+	Spaceship::Tunes.login(username, password)
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
 	ratings.reviews(store_front).collect { |review|
 		{
@@ -58,10 +62,12 @@ end
 
 # Add a new response to a rating
 post '/response' do
+	username = params[:username]
+	password = params[:password]
 	rating_id = params[:rating_id]
 	bundle_id = params[:bundle_id]
 	response = params[:response_text]
-	Spaceship::Tunes.login("contact@appikon.com", "AppikonSoft121")
+	Spaceship::Tunes.login(username, password)
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.ratings.sendResponse(rating_id, response).to_json
 end
