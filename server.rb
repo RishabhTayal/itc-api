@@ -17,10 +17,14 @@ get '/apps' do
 	password = params[:password]
 	Spaceship::Tunes.login(username, password)
 	all_apps = Spaceship::Tunes::Application.all
-	all_apps = all_apps.sort { |x, y|
+	live_apps = all_apps.select { |app|
+		# app.live_version != nil
+		app.app_icon_preview_url != nil
+	}
+	live_apps = live_apps.sort { |x, y|
 		x.name <=> y.name
 	}
-	all_apps.collect { |a|
+	live_apps.collect { |a|
 		{
 			name: a.name,
 			bundle_id: a.bundle_id,
