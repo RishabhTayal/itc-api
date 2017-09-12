@@ -4,6 +4,7 @@ require 'json'
 
 # Login user
 post '/login' do
+	content_type :json
 	username = params[:username]
 	password = params[:password]
 	Spaceship::Tunes.login(username, password)
@@ -13,6 +14,7 @@ end
 
 # Get list of apps
 get '/apps' do
+	content_type :json
 	username = params[:username]
 	password = params[:password]
 	Spaceship::Tunes.login(username, password)
@@ -35,6 +37,7 @@ end
 
 # Get list of ratings for a specified app with bundle_id
 get '/ratings' do
+	content_type :json
 	username = params[:username]
 	password = params[:password]
 	bundle_id = params[:bundle_id]
@@ -66,6 +69,7 @@ end
 
 # Add a new response to a rating
 post '/response' do
+	content_type :json
 	username = params[:username]
 	password = params[:password]
 	rating_id = params[:rating_id]
