@@ -20,8 +20,8 @@ get '/apps' do
 	Spaceship::Tunes.login(username, password)
 	all_apps = Spaceship::Tunes::Application.all
 	live_apps = all_apps.select { |app|
-		# app.live_version != nil
-		app.app_icon_preview_url != nil
+		app.live_version != nil
+		# app.app_icon_preview_url != nil
 	}
 	live_apps = live_apps.sort { |x, y|
 		x.name <=> y.name
