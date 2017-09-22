@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/RishabhTayal/fastlane.git
-  revision: 9429122e9bfafed510918ebf4897225225fb5543
+  revision: e5073739e0f080ceaa21e36c5cf773128b3a3357
   branch: spaceship-review-response-methods
   specs:
-    fastlane (2.56.0)
+    fastlane (2.58.0)
       CFPropertyList (>= 2.3, < 3.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)

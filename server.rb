@@ -79,3 +79,16 @@ post '/response' do
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.ratings.sendResponse(rating_id, response).to_json
 end
+
+# Delete developer response from a review
+delete '/response' do
+	content_type :json
+	username = params[:username]
+	password = params[:password]
+	rating_id = params[:rating_id]
+	bundle_id = params[:bundle_id]
+	response_id = params[:response_id]
+	Spaceship::Tunes.login(username, password)
+	app = Spaceship::Tunes::Application.find(bundle_id)
+	body app.ratings.deleteResponse(rating_id, response_id).to_json
+end
