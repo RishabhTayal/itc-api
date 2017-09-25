@@ -92,3 +92,13 @@ delete '/response' do
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.ratings.deleteResponse(rating_id, response_id).to_json
 end
+
+get '/app_status' do
+	content_type :json
+	username = params[:username]
+	password = params[:password]
+	bundle_id = params[:bundle_id]
+	Spaceship::Tunes.login(username, password)
+	app = Spaceship::Tunes::Application.find(bundle_id)
+	app.edit_version.to_json
+end
