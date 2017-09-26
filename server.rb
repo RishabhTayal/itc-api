@@ -102,3 +102,21 @@ get '/app_status' do
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	app.edit_version.to_json
 end
+
+# Get List of testers
+get '/testers' do
+	content_type :json
+	username = params[:username]
+	password = params[:password]
+	bundle_id = params[:bundle_id]
+	Spaceship::Tunes.login(username, password)
+	app = Spaceship::Tunes::Application.find(bundle_id)
+	testers = Spaceship::TestFlight::Tester.all(app_id: app.apple_id)
+	testers.collect { |tester|
+		{
+			first_name: tester.first_name,
+			last_name: tester.last_name,
+			email: tester.email
+		}
+	}.to_json
+end
