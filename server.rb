@@ -8,8 +8,7 @@ post '/login' do
 	username = params[:username]
 	password = params[:password]
 	Spaceship::Tunes.login(username, password)
-	app = Spaceship::Tunes::Application.all[0]
-	return { success: true }.to_json
+	Spaceship::Tunes.client.teams.to_json
 end
 
 # Get list of apps
@@ -110,6 +109,8 @@ get '/testers' do
 	password = params[:password]
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
+	# Spaceship::Tunes.select_team
+	# Spaceship::Tunes.client.team_id =  #{}"118140221"
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	testers = Spaceship::TestFlight::Tester.all(app_id: app.apple_id)
 	testers.collect { |tester|
