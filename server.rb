@@ -9,6 +9,16 @@ post '/login' do
 	password = params[:password]
 	CredentialsManager::PasswordManager.logout
 	Spaceship::Tunes.login(username, password)
+	app = Spaceship::Tunes::Application.all[0]
+	return { success: true }.to_json
+end
+
+post '/login/v2' do
+	content_type :json
+	username = params[:username]
+	password = params[:password]
+	CredentialsManager::PasswordManager.logout
+	Spaceship::Tunes.login(username, password)
 	Spaceship::Tunes.client.teams.to_json
 end
 
