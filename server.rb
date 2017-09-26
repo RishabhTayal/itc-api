@@ -17,7 +17,7 @@ get '/apps' do
 	username = params[:username]
 	password = params[:password]
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.client.team_id =  params[:team_id]
+	Spaceship::Tunes.client.team_id = params[:team_id]
 	Spaceship::Portal.login(username, password)
 	Spaceship::Portal.client.team_id = params[:team_id]
 	all_apps = Spaceship::Tunes::Application.all
@@ -48,7 +48,7 @@ get '/ratings' do
 		store_front = ""
 	end
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.client.team_id =  params[:team_id]
+	Spaceship::Tunes.client.team_id = params[:team_id]
 	Spaceship::Portal.login(username, password)
 	Spaceship::Portal.client.team_id = params[:team_id]
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
@@ -81,7 +81,7 @@ post '/response' do
 	bundle_id = params[:bundle_id]
 	response = params[:response_text]
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.client.team_id =  params[:team_id]
+	Spaceship::Tunes.client.team_id = params[:team_id]
 	Spaceship::Portal.login(username, password)
 	Spaceship::Portal.client.team_id = params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
@@ -97,7 +97,7 @@ delete '/response' do
 	bundle_id = params[:bundle_id]
 	response_id = params[:response_id]
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.client.team_id =  params[:team_id]
+	Spaceship::Tunes.client.team_id = params[:team_id]
 	Spaceship::Portal.login(username, password)
 	Spaceship::Portal.client.team_id = params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
@@ -110,7 +110,7 @@ get '/app_status' do
 	password = params[:password]
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.client.team_id =  params[:team_id]
+	Spaceship::Tunes.client.team_id = params[:team_id]
 	Spaceship::Portal.login(username, password)
 	Spaceship::Portal.client.team_id = params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
@@ -124,7 +124,7 @@ get '/testers' do
 	password = params[:password]
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.client.team_id = params[:team_id]
+	Spaceship::Tunes.client.team_id = params[:team_id]
 	Spaceship::Portal.login(username, password)
 	Spaceship::Portal.client.team_id = params[:team_id]
 	puts Spaceship::Tunes.client.team_id
