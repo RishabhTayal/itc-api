@@ -17,6 +17,7 @@ get '/apps' do
 	username = params[:username]
 	password = params[:password]
 	Spaceship::Tunes.login(username, password)
+	Spaceship::Tunes.client.team_id =  params[:team_id]
 	all_apps = Spaceship::Tunes::Application.all
 	live_apps = all_apps.select { |app|
 		# app.live_version != nil
@@ -45,6 +46,7 @@ get '/ratings' do
 		store_front = ""
 	end
 	Spaceship::Tunes.login(username, password)
+	Spaceship::Tunes.client.team_id =  params[:team_id]
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
 	ratings.reviews(store_front).collect { |review|
 		{
@@ -75,6 +77,7 @@ post '/response' do
 	bundle_id = params[:bundle_id]
 	response = params[:response_text]
 	Spaceship::Tunes.login(username, password)
+	Spaceship::Tunes.client.team_id =  params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.ratings.sendResponse(rating_id, response).to_json
 end
@@ -88,6 +91,7 @@ delete '/response' do
 	bundle_id = params[:bundle_id]
 	response_id = params[:response_id]
 	Spaceship::Tunes.login(username, password)
+	Spaceship::Tunes.client.team_id =  params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.ratings.deleteResponse(rating_id, response_id).to_json
 end
@@ -98,6 +102,7 @@ get '/app_status' do
 	password = params[:password]
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
+	Spaceship::Tunes.client.team_id =  params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	app.edit_version.to_json
 end
@@ -109,7 +114,6 @@ get '/testers' do
 	password = params[:password]
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
-	# Spaceship::Tunes.select_team
 	Spaceship::Tunes.client.team_id =  params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	testers = Spaceship::TestFlight::Tester.all(app_id: app.apple_id)
