@@ -110,7 +110,7 @@ get '/testers' do
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
 	# Spaceship::Tunes.select_team
-	# Spaceship::Tunes.client.team_id =  #{}"118140221"
+	Spaceship::Tunes.client.team_id =  params[:team_id]
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	testers = Spaceship::TestFlight::Tester.all(app_id: app.apple_id)
 	testers.collect { |tester|
