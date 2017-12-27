@@ -75,6 +75,34 @@ get '/ratings' do
 	}.to_json
 end
 
+# Returns 
+get '/build_trains' do
+	content_type :json
+	username = params[:username]
+	password = params[:password]
+	bundle_id = params[:bundle_id]
+	Spaceship::Tunes.login(username, password)
+	# require "pry"
+	# binding.pry
+	app = Spaceship::Tunes::Application.find(bundle_id)
+	train = app.build_trains
+	puts train
+	train.to_json
+end
+
+# Returns list of all processing builds from iTC
+get '/processing_builds' do
+	content_type :json
+	username = params[:username]
+	password = params[:password]
+	bundle_id = params[:bundle_id]
+	Spaceship::Tunes.login(username, password)
+	# require "pry"
+	# binding.pry
+	app = Spaceship::Tunes::Application.find(bundle_id)
+	app.all_processing_builds.to_json
+end
+
 # Add a new response to a rating
 post '/response' do
 	content_type :json
@@ -117,13 +145,23 @@ get '/testers' do
 	username = params[:username]
 	password = params[:password]
 	bundle_id = params[:bundle_id]
-	Spaceship::Tunes.login(username, password)
-	Spaceship::Tunes.client.team_id = params[:team_id]
-	Spaceship::Portal.login(username, password)
-	Spaceship::Portal.client.team_id = params[:team_id]
-	puts Spaceship::Tunes.client.team_id
-	app = Spaceship::Tunes::Application.find(bundle_id)
-	testers = Spaceship::TestFlight::Tester.all(app_id: app.apple_id)
+	puts bundle_id
+	client = Spaceship::TunesClient.new
+	client.login(username, password)
+	client.team_id = params[:team_id]
+	# Spaceship::Tunes.client.team_id = params[:team_id]
+	# Spaceship::Portal.login(username, password)
+	# Spaceship::Portal.client.team_id = params[:team_id]
+	# puts client.team_id
+	apps = client.applications.find(bundle_id)
+	# p app.to_json
+	for app in apps
+		p app.to_json
+	end
+	# app = Spaceship::Tunes::Application.find(bundle_id)
+	# require "pry"
+	# binding.pry
+	testers = Spaceship::TestFlight::Tester.all(app_id: apps.first[:adamId])
 	testers.collect { |tester|
 		{
 			first_name: tester.first_name,
