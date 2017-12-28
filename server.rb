@@ -25,7 +25,8 @@ get '/apps' do
 	content_type :json
 	username = params[:username]
 	password = params[:password]
-	Spaceship::Tunes.login(username, password)
+	client = Spaceship::Tunes.login(username, password)
+	client.team_id = params[:team_id]
 	all_apps = Spaceship::Tunes::Application.all
 	live_apps = all_apps.select { |app|
 		# app.live_version != nil
@@ -97,9 +98,9 @@ get '/processing_builds' do
 	password = params[:password]
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
+	app = Spaceship::Tunes::Application.find(bundle_id)
 	# require "pry"
 	# binding.pry
-	app = Spaceship::Tunes::Application.find(bundle_id)
 	app.all_processing_builds.to_json
 end
 
