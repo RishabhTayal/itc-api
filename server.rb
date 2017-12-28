@@ -65,6 +65,7 @@ get '/ratings' do
 			store_front: review.store_front,
 			total_views: review.total_views,
 			raw_developer_response: review.raw_developer_response,
+			last_modified: review.last_modified,
 			developer_response: {
 				id: review.developer_response.id,
 				response: review.developer_response.response,
@@ -159,10 +160,7 @@ get '/testers' do
 	for app in apps
 		p app.to_json
 	end
-	# app = Spaceship::Tunes::Application.find(bundle_id)
-	# require "pry"
-	# binding.pry
-	testers = Spaceship::TestFlight::Tester.all(app_id: apps.first[:adamId])
+	testers = Spaceship::TestFlight::Tester.all(app_id: apps.first["adamId"])
 	testers.collect { |tester|
 		{
 			first_name: tester.first_name,
