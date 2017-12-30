@@ -28,17 +28,18 @@ get '/apps' do
 	client = Spaceship::Tunes.login(username, password)
 	client.team_id = params[:team_id]
 	all_apps = Spaceship::Tunes::Application.all
-	live_apps = all_apps.select { |app|
-		# app.live_version != nil
-		app.app_icon_preview_url != nil
-	}
-	live_apps = live_apps.sort { |x, y|
+	# live_apps = all_apps.select { |app|
+	# 	# app.live_version != nil
+	# 	app.app_icon_preview_url != nil
+	# }
+	all_apps = all_apps.sort { |x, y|
 		x.name <=> y.name
 	}
-	live_apps.collect { |a|
+	all_apps.collect { |a|
 		{
 			name: a.name,
 			bundle_id: a.bundle_id,
+			apple_id: a.apple_id,
 			app_icon_preview_url: a.app_icon_preview_url,
 			platforms: a.platforms
 		}
