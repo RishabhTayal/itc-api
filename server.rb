@@ -39,7 +39,8 @@ get '/apps' do
 		{
 			name: a.name,
 			bundle_id: a.bundle_id,
-			app_icon_preview_url: a.app_icon_preview_url
+			app_icon_preview_url: a.app_icon_preview_url,
+			platforms: a.platforms
 		}
 	}.to_json
 end
