@@ -22,7 +22,7 @@ That's all, to stop press Ctrl + C
 # Troubleshooting
  - RVM used your Gemfile for selecting Ruby... -> This is only a warning skip it or run ``` rvm rvmrc warning ignore allGemfiles ```
  
- - Error on run: undefined... <main>:... -> Run  ``` bundle install ```  and check if tere are no errors
+ - Error on run: undefined... <main>:... -> Run  ``` bundle install ```  and check if there are no errors
  
  
 # Contributing to the app
