@@ -1,7 +1,7 @@
 {
   "name": "iTC Api",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/eliottiosdevs/itc-api",
-  "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": ["node", "express", "static"]
+  "description": "The iTC Api for ReviewMonitor",
+  "repository": "https://github.com/RishabhTayal/itc-api",
+  "logo": "https://github.com/RishabhTayal/ReviewMonitor/blob/master/app%20icons/iTunesArtwork%403x.png",
+  "keywords": ["itc", "ReviewMonitor", "itc-api"]
 }
