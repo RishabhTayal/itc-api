@@ -22,7 +22,6 @@ end
 
 # Get list of apps
     
-    #version = app.live_version.version
     #copyright = app.live_version.copyright
     #status = app.live_version.app_status
     #live = app.live_version.is_live
@@ -74,7 +73,8 @@ get '/app/metadata' do
 	version =  Spaceship::Tunes::Application.find(bundle_id).live_version
 	p version
 	{
-		version: version.version
+		version: version.version,
+        copyright: version.copyright
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
