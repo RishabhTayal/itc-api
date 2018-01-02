@@ -3,6 +3,7 @@
 Backend API project for [ReviewMonitor](https://github.com/RishabhTayal/ReviewMonitor/) iOS app.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master)
+
 # Installation
 
 ### Prerequisites
@@ -23,7 +24,6 @@ That's all, to stop press Ctrl + C
  - RVM used your Gemfile for selecting Ruby... -> This is only a warning skip it or run ``` rvm rvmrc warning ignore allGemfiles ```
  
  - Error on run: undefined... <main>:... -> Run  ``` bundle install ```  and check if there are no errors
- 
  
 # Contributing to the app
 
