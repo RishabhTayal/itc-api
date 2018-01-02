@@ -24,8 +24,8 @@ end
 
 get '/app/metadata' do
     content_type :json
-    username = params[:username]
-    password = params[:password]
+    username = request.env['HTTP_USERNAME']
+    password = request.env['HTTP_PASSWORD']
     bundle_id = params[:bundle_id]
     client = Spaceship::Tunes.login(username, password)
     client.team_id = params[:team_id]
