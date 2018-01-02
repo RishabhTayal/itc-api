@@ -5,8 +5,8 @@ require 'json'
 # Login user
 post '/login' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	Spaceship::Tunes.login(username, password)
 	app = Spaceship::Tunes::Application.all[0]
 	return { success: true }.to_json
@@ -14,8 +14,8 @@ end
 
 post '/login/v2' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	Spaceship::Tunes.login(username, password)
 	Spaceship::Tunes.client.teams.to_json
 end
@@ -51,10 +51,10 @@ end
 
 get '/apps' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	client = Spaceship::Tunes.login(username, password)
-	client.team_id = params[:team_id]
+	client.team_id = request.env['HTTP_TEAM_ID']
 	all_apps = Spaceship::Tunes::Application.all
 	# live_apps = all_apps.select { |app|
 	# 	# app.live_version != nil
@@ -77,8 +77,8 @@ end
 # Get list of ratings for a specified app with bundle_id
 get '/ratings' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	store_front = params[:store_front]
 	if store_front == nil 
@@ -110,8 +110,8 @@ end
 # Returns 
 get '/build_trains' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
 	# require "pry"
@@ -125,8 +125,8 @@ end
 # Returns list of all processing builds from iTC
 get '/processing_builds' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
 	app = Spaceship::Tunes::Application.find(bundle_id)
@@ -138,8 +138,8 @@ end
 # Add a new response to a rating
 post '/response' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	rating_id = params[:rating_id]
 	bundle_id = params[:bundle_id]
 	response = params[:response_text]
@@ -151,8 +151,8 @@ end
 # Delete developer response from a review
 delete '/response' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	rating_id = params[:rating_id]
 	bundle_id = params[:bundle_id]
 	response_id = params[:response_id]
@@ -163,8 +163,8 @@ end
 
 get '/app_status' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
 	app = Spaceship::Tunes::Application.find(bundle_id)
@@ -174,13 +174,13 @@ end
 # Get List of testers
 get '/testers' do
 	content_type :json
-	username = params[:username]
-	password = params[:password]
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	puts bundle_id
 	client = Spaceship::TunesClient.new
 	client.login(username, password)
-	client.team_id = params[:team_id]
+	client.team_id = request.env['HTTP_TEAM_ID']
 	# Spaceship::Tunes.client.team_id = params[:team_id]
 	# Spaceship::Portal.login(username, password)
 	# Spaceship::Portal.client.team_id = params[:team_id]
