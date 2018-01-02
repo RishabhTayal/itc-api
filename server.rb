@@ -28,15 +28,13 @@ get '/app/metadata' do
     password = request.env['HTTP_PASSWORD']
     bundle_id = params[:bundle_id]
     client = Spaceship::Tunes.login(username, password)
-    client.team_id = request.env['HTTP_TEAM_ID']
-
-    
-    app = Spaceship::Tunes::Application.find(bundle_id)
+    client.team_id = '271949'
     
     version = app.live_version.version
     copyright = app.live_version.copyright
     status = app.live_version.app_status
     live = app.live_version.is_live
+    
     primcat = app.details.primary_category
     firstsubcat = app.details.primary_first_sub_category
     secondsubcat = app.details.primary_second_sub_category
