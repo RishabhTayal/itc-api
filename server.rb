@@ -93,7 +93,9 @@ get '/ratings' do
 	if store_front == nil 
 		store_front = ""
 	end
-	Spaceship::Tunes.login(username, password)
+	client = Spaceship::Tunes.login(username, password)
+    client.team_id = request.env['HTTP_TEAM_ID']
+    
 	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
 	ratings.reviews(store_front).collect { |review|
 		{
