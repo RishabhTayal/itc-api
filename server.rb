@@ -28,7 +28,8 @@ get '/app/metadata' do
     password = request.env['HTTP_PASSWORD']
     bundle_id = params[:bundle_id]
     client = Spaceship::Tunes.login(username, password)
-    client.team_id = params[:team_id]
+    client.team_id = request.env['HTTP_TEAM_ID']
+
     
     app = Spaceship::Tunes::Application.find(bundle_id)
     
