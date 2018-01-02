@@ -22,7 +22,7 @@ end
 
 # Get list of apps
 
-post '/app/metadata' do
+get '/app/metadata' do
     content_type :json
     username = request.env['HTTP_USERNAME']
     password = request.env['HTTP_PASSWORD']
