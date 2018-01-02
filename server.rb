@@ -72,7 +72,8 @@ get '/app/metadata' do
         islive: version.is_live,
         watchos: version.supports_apple_watch,
         
-        raw: version.raw_status
+        betaTesting: version.can_beta_test,
+        build: version.version_id
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
