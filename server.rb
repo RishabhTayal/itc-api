@@ -47,21 +47,21 @@ get '/apps' do
 end
 
 # Gets screenshots of live_version app
-get '/app/screenshots' do
+get '/app/metadata' do
 	content_type :json
 	username = request.env['HTTP_USERNAME']
 	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	Spaceship::Tunes.login(username, password)
-	app = Spaceship::Tunes::Application.find(bundle_id).live_version.screenshots
-	app['en-US'].collect { |ss|
-		{
-			url: ss.url,
-			sort_order: ss.sort_order,
-			language: ss.language,
-			is_imessage: ss.is_imessage,
-			device_type: ss.device_type
-		}
+	version =  Spaceship::Tunes::Application.find(bundle_id).live_version
+	p version
+	{
+		version: version.version
+		# url: ss.url,
+		# sort_order: ss.sort_order,
+		# language: ss.language,
+		# is_imessage: ss.is_imessage,
+		# device_type: ss.device_type
 	}.to_json
 end
 
