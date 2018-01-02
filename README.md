@@ -35,7 +35,7 @@ From time to time there will be updates to `itc-api`. There are 2 ways to update
 ### Using Heroku website
 
 - Delete your application on [heroku.com](https://www.heroku.com/)
-- [Create a new boarding application](https://www.heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api)
+- [Create a new itc-api application](https://www.heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api)
 
 # Troubleshooting
  - RVM used your Gemfile for selecting Ruby... -> This is only a warning skip it or run ``` rvm rvmrc warning ignore allGemfiles ```
