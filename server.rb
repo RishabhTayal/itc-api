@@ -26,7 +26,7 @@ get '/apps' do
 	username = request.env['HTTP_USERNAME']
 	password = request.env['HTTP_PASSWORD']
 	client = Spaceship::Tunes.login(username, password)
-	client.team_id = params[:team_id]
+	client.team_id = request.env['HTTP_TEAM_ID']
 	all_apps = Spaceship::Tunes::Application.all
 	# live_apps = all_apps.select { |app|
 	# 	# app.live_version != nil
@@ -152,7 +152,7 @@ get '/testers' do
 	puts bundle_id
 	client = Spaceship::TunesClient.new
 	client.login(username, password)
-	client.team_id = params[:team_id]
+	client.team_id = request.env['HTTP_TEAM_ID']
 	# Spaceship::Tunes.client.team_id = params[:team_id]
 	# Spaceship::Portal.login(username, password)
 	# Spaceship::Portal.client.team_id = params[:team_id]
