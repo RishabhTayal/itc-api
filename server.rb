@@ -21,6 +21,34 @@ post '/login/v2' do
 end
 
 # Get list of apps
+
+get '/app/metadata' do
+    content_type :json
+    username = params[:username]
+    password = params[:password]
+    bundle_id = params[:bundle_id]
+    client = Spaceship::Tunes.login(username, password)
+    client.team_id = params[:team_id]
+    
+    app = Spaceship::Tunes::Application.find(bundle_id)
+    
+    version = app.live_version.version
+    copyright = app.live_version.copyright
+    status = app.live_version.app_status
+    live = app.live_version.is_live
+    primcat = app.details.primary_category
+    firstsubcat = app.details.primary_first_sub_category
+    secondsubcat = app.details.primary_second_sub_category
+    
+    seccat = app.details.secondary_category
+    firstsubseccat = app.details.secondary_first_sub_category
+    secondsubseccat = app.details.secondary_second_sub_category
+
+    watch = app.live_version.supports_apple_watch
+
+    arr = ["version": version, "copyright": copyright, "status": status, "live": live, "prim_categ": primcat, "prim_sub_categ": firstsubcat, "second_sub_categ": secondsubcat, "sec_categ": seccat, "sec_sub_categ": firstsubseccat, "sec_second_sub_categ": secondsubseccat, "applewatch": watch].to_json
+end
+
 get '/apps' do
 	content_type :json
 	username = params[:username]
