@@ -68,7 +68,9 @@ get '/app/metadata' do
 	username = request.env['HTTP_USERNAME']
 	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
-	Spaceship::Tunes.login(username, password)
+	client = Spaceship::Tunes.login(username, password)
+    client.team_id = request.env['HTTP_TEAM_ID']
+
 	version =  Spaceship::Tunes::Application.find(bundle_id).live_version
 	p version
 	{
