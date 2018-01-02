@@ -21,11 +21,7 @@ post '/login/v2' do
 end
 
 # Get list of apps
-    
-    #copyright = app.live_version.copyright
-    #status = app.live_version.app_status
-    #live = app.live_version.is_live
-    
+
     #primcat = app.details.primary_category
     #firstsubcat = app.details.primary_first_sub_category
     #secondsubcat = app.details.primary_second_sub_category
@@ -74,7 +70,10 @@ get '/app/metadata' do
 	p version
 	{
 		version: version.version,
-        copyright: version.copyright
+        copyright: version.copyright,
+        status: version.app_status,
+        islive: version.is_live
+        
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
