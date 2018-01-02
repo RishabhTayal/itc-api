@@ -73,7 +73,7 @@ get '/app/metadata' do
         watchos: version.supports_apple_watch,
         
         betaTesting: version.can_beta_test,
-        build: version.version_id
+        lang: version.languages
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
