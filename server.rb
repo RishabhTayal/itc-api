@@ -30,7 +30,8 @@ get '/app/metadata' do
     client = Spaceship::Tunes.login(username, password)
     client.team_id = '271949'
     
-    Spaceship::Tunes::Application.find(bundle_id)
+    app = Spaceship::Tunes::Application.find(bundle_id)
+
     
     version = app.live_version.version
     copyright = app.live_version.copyright
