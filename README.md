@@ -2,7 +2,7 @@
 
 Backend API project for [ReviewMonitor](https://github.com/RishabhTayal/ReviewMonitor/) iOS app.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api)
 
 # Installation
 
