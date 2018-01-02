@@ -70,8 +70,9 @@ get '/app/metadata' do
         copyright: version.copyright,
         status: version.app_status,
         islive: version.is_live,
-        watchos: version.supports_apple_watch
+        watchos: version.supports_apple_watch,
         
+        raw: version.raw_status
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
