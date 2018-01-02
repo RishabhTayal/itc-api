@@ -37,24 +37,6 @@ end
 
 #    watch = app.live_version.supports_apple_watch
 
-get '/app/metadata' do
-    content_type :json
-    username = request.env['HTTP_USERNAME']
-    password = request.env['HTTP_PASSWORD']
-    bundle_id = params[:bundle_id]
-    Spaceship::Tunes.login(username, password)
-    version =  Spaceship::Tunes::Application.find(bundle_id).live_version
-    p version
-    {
-        version: version.version
-        # url: ss.url,
-        # sort_order: ss.sort_order
-        # language: ss.language,
-        # is_imessage: ss.is_imessage,
-        # device_type: ss.device_type
-    }.to_json
-end
-
 get '/apps' do
 	content_type :json
 	username = request.env['HTTP_USERNAME']
