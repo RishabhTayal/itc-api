@@ -20,18 +20,6 @@ post '/login/v2' do
 	Spaceship::Tunes.client.teams.to_json
 end
 
-# Get list of apps
-
-    #primcat = app.details.primary_category
-    #firstsubcat = app.details.primary_first_sub_category
-    #secondsubcat = app.details.primary_second_sub_category
-    
-    #seccat = app.details.secondary_category
-    #firstsubseccat = app.details.secondary_first_sub_category
-    #    secondsubseccat = app.details.secondary_second_sub_category
-
-#    watch = app.live_version.supports_apple_watch
-
 get '/apps' do
 	content_type :json
 	username = request.env['HTTP_USERNAME']
@@ -57,6 +45,15 @@ get '/apps' do
 	}.to_json
 end
 
+# Get list of apps
+
+#primcat = app.details.primary_category
+#firstsubcat = app.details.primary_first_sub_category
+#secondsubcat = app.details.primary_second_sub_category
+#seccat = app.details.secondary_category
+#firstsubseccat = app.details.secondary_first_sub_category
+#secondsubseccat = app.details.secondary_second_sub_category
+
 # Gets screenshots of live_version app
 get '/app/metadata' do
 	content_type :json
@@ -72,7 +69,8 @@ get '/app/metadata' do
 		version: version.version,
         copyright: version.copyright,
         status: version.app_status,
-        islive: version.is_live
+        islive: version.is_live,
+        watchos: version.supports_apple_watch
         
 		# url: ss.url,
 		# sort_order: ss.sort_order,
