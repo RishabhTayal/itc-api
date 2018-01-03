@@ -1,7 +1,9 @@
 language: ruby
+
 cache:
   directories:
     - bundle
+
 rvm:
   - 2.4.0
 
