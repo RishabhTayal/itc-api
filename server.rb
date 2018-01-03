@@ -47,9 +47,6 @@ end
 
 # Get list of apps
 
-#primcat = app.details.primary_category
-#firstsubcat = app.details.primary_first_sub_category
-#secondsubcat = app.details.primary_second_sub_category
 #seccat = app.details.secondary_category
 #firstsubseccat = app.details.secondary_first_sub_category
 #secondsubseccat = app.details.secondary_second_sub_category
@@ -75,7 +72,15 @@ get '/app/metadata' do
         lang: version.live_version.languages,
         keywords: version.live_version.keywords,
         support: version.live_version.support_url,
-        marketing: version.live_version.marketing_url
+        marketing: version.live_version.marketing_url,
+        
+        primarycat: version.details.primary_category,
+        primarycatfirstsub: version.details.primary_first_sub_category,
+        primarycatsecondsub: version.details.primary_second_sub_category,
+        secondarycat: version.details.secondary_category,
+        secondarycatfirstsub: version.details.secondary_first_sub_category,
+        secondarycatsecondsub: version.details.secondary_second_sub_category,
+        
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
