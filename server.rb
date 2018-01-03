@@ -139,7 +139,7 @@ get '/app_status' do
 	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	client = Spaceship::Tunes.login(username, password)
-    client.team_id = request.env['HTTP_TEAM_ID']
+	client.team_id = request.env['HTTP_TEAM_ID']
 	app = Spaceship::Tunes::Application.find(bundle_id)
 	body app.edit_version.to_json
 end
