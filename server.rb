@@ -63,19 +63,19 @@ get '/app/metadata' do
 	client = Spaceship::Tunes.login(username, password)
     client.team_id = request.env['HTTP_TEAM_ID']
 
-	version =  Spaceship::Tunes::Application.find(bundle_id).live_version
+	version =  Spaceship::Tunes::Application.find(bundle_id)
 	p version
 	{
-		version: version.version,
-        copyright: version.copyright,
-        status: version.app_status,
-        islive: version.is_live,
-        watchos: version.supports_apple_watch,
-        betaTesting: version.can_beta_test,
-        lang: version.languages,
-        keywords: version.keywords,
-        support: version.support_url,
-        marketing: version.marketing_url
+		version: version.live_version.version,
+        copyright: version.live_version.copyright,
+        status: version.live_version.app_status,
+        islive: version.live_version.is_live,
+        watchos: version.live_version.supports_apple_watch,
+        betaTesting: version.live_version.can_beta_test,
+        lang: version.live_version.languages,
+        keywords: version.live_version.keywords,
+        support: version.live_version.support_url,
+        marketing: version.live_version.marketing_url
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
