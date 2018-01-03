@@ -71,9 +71,11 @@ get '/app/metadata' do
         status: version.app_status,
         islive: version.is_live,
         watchos: version.supports_apple_watch,
-        
         betaTesting: version.can_beta_test,
-        lang: version.languages
+        lang: version.languages,
+        keywords: version.keywords,
+        support: version.support_url,
+        marketing: version.marketing_url
 		# url: ss.url,
 		# sort_order: ss.sort_order,
 		# language: ss.language,
