@@ -47,10 +47,6 @@ end
 
 # Get list of apps
 
-#seccat = app.details.secondary_category
-#firstsubseccat = app.details.secondary_first_sub_category
-#secondsubseccat = app.details.secondary_second_sub_category
-
 # Gets screenshots of live_version app
 get '/app/metadata' do
 	content_type :json
@@ -58,10 +54,8 @@ get '/app/metadata' do
 	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
 	client = Spaceship::Tunes.login(username, password)
-    client.team_id = request.env['HTTP_TEAM_ID']
 
 	version =  Spaceship::Tunes::Application.find(bundle_id)
-	p version
 	{
 		version: version.live_version.version,
         copyright: version.live_version.copyright,
