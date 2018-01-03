@@ -41,7 +41,8 @@ get '/apps' do
 			bundle_id: a.bundle_id,
 			apple_id: a.apple_id,
 			app_icon_preview_url: a.app_icon_preview_url,
-			platforms: a.platforms
+			platforms: a.platforms,
+			last_modified: a.last_modified
 		}
 	}.to_json
 end
