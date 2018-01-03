@@ -9,4 +9,4 @@ gem 'fastlane', :git => 'https://github.com/RishabhTayal/fastlane.git', :branch 
 gem 'pry'
 gem 'puma'
 gem 'danger'
-gem 'rubocop'
+gem 'rubocop', '~> 0.52.1'
