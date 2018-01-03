@@ -138,9 +138,10 @@ get '/app_status' do
 	username = request.env['HTTP_USERNAME']
 	password = request.env['HTTP_PASSWORD']
 	bundle_id = params[:bundle_id]
-	Spaceship::Tunes.login(username, password)
+	client = Spaceship::Tunes.login(username, password)
+    client.team_id = request.env['HTTP_TEAM_ID']
 	app = Spaceship::Tunes::Application.find(bundle_id)
-	app.edit_version.to_json
+	body app.edit_version.to_json
 end
 
 # Get List of testers
