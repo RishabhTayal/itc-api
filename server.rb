@@ -2,6 +2,11 @@ require 'sinatra'
 require 'spaceship'
 require 'json'
 
+get '/' do
+  content_type :json
+  return { itc_api: true }.to_json
+end
+
 # Login user
 post '/login' do
   content_type :json
