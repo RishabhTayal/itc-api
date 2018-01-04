@@ -1,7 +1,7 @@
-AllCops:
-  TargetRubyVersion: 2.0
-  Exclude:
-    - './vendor/**/*'
+# AllCops:
+#   TargetRubyVersion: 2.0
+#   Exclude:
+#     - './vendor/**/*'
 
 AllCops:
   Exclude:
@@ -13,6 +13,7 @@ AllCops:
     - '**/Fastfile'
     - '**/Deliverfile'
     - '**/*.gemspec'
+    - './vendor/**/*'
 
 Metrics/BlockLength:
   Enabled: false
