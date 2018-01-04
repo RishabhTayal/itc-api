@@ -20,6 +20,7 @@ post '/login/v2' do
   Spaceship::Tunes.client.teams.to_json
 end
 
+# Get list of apps
 get '/apps' do
   content_type :json
   username = request.env['HTTP_USERNAME']
@@ -43,8 +44,6 @@ get '/apps' do
     }
   end.to_json
 end
-
-# Get list of apps
 
 # Gets screenshots of live_version app
 get '/app/metadata' do
