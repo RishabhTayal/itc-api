@@ -174,6 +174,7 @@ get '/app_status' do
 end
 
 # Get List of testers
+get '/testers' do
   content_type :json
   username = request.env['HTTP_USERNAME']
   password = request.env['HTTP_PASSWORD']
