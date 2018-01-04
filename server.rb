@@ -20,7 +20,6 @@ post '/login/v2' do
   Spaceship::Tunes.client.teams.to_json
 end
 
-# Get list of apps
 get '/apps' do
   content_type :json
   username = request.env['HTTP_USERNAME']
@@ -43,6 +42,38 @@ get '/apps' do
       last_modified: a.last_modified
     }
   end.to_json
+end
+
+# Get list of apps
+
+# Gets screenshots of live_version app
+get '/app/metadata' do
+	content_type :json
+	username = request.env['HTTP_USERNAME']
+	password = request.env['HTTP_PASSWORD']
+	bundle_id = params[:bundle_id]
+	client = Spaceship::Tunes.login(username, password)
+
+	version =  Spaceship::Tunes::Application.find(bundle_id)
+	{
+		version: version.live_version.version,
+        copyright: version.live_version.copyright,
+        status: version.live_version.app_status,
+        islive: version.live_version.is_live,
+        watchos: version.live_version.supports_apple_watch,
+        betaTesting: version.live_version.can_beta_test,
+        lang: version.live_version.languages,
+        keywords: version.live_version.keywords,
+        support: version.live_version.support_url,
+        marketing: version.live_version.marketing_url,
+        
+        primarycat: version.details.primary_category,
+        primarycatfirstsub: version.details.primary_first_sub_category,
+        primarycatsecondsub: version.details.primary_second_sub_category,
+        secondarycat: version.details.secondary_category,
+        secondarycatfirstsub: version.details.secondary_first_sub_category,
+        secondarycatsecondsub: version.details.secondary_second_sub_category,
+	}.to_json
 end
 
 # Get list of ratings for a specified app with bundle_id
