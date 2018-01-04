@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 gem 'sinatra'
 
 # gemspec path: File.expand_path("/Users/rtayal/Desktop/Forks/fastlane")
-gem 'fastlane', :git => 'https://github.com/RishabhTayal/fastlane.git', :branch => 'spaceship-review-response-methods'
+gem 'danger'
+gem 'fastlane', git: 'https://github.com/RishabhTayal/fastlane.git', branch: 'spaceship-review-response-methods'
 gem 'pry'
 gem 'puma'
-gem 'danger'
-gem 'rubocop', '~> 0.52.1'
+gem 'rubocop', '~> 0.49.1'
