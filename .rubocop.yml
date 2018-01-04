@@ -1,9 +1,8 @@
-# AllCops:
-#   TargetRubyVersion: 2.0
-#   Exclude:
-#     - './vendor/**/*'
-
 AllCops:
+  Exclude:
+    - './vendor/**/*'
+
+Style/FileName:
   Exclude:
     - '**/Dangerfile'
     - '**/Brewfile'
@@ -12,8 +11,11 @@ AllCops:
     - '**/Rakefile'
     - '**/Fastfile'
     - '**/Deliverfile'
+    - '**/Snapfile'
     - '**/*.gemspec'
-    - './vendor/**/*'
 
 Metrics/BlockLength:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 370
