@@ -1,0 +1,16 @@
+AllCops:
+  TargetRubyVersion: 2.0
+
+AllCops:
+  Exclude:
+    - '**/Dangerfile'
+    - '**/Brewfile'
+    - '**/Gemfile'
+    - '**/Podfile'
+    - '**/Rakefile'
+    - '**/Fastfile'
+    - '**/Deliverfile'
+    - '**/*.gemspec'
+
+Metrics/BlockLength:
+  Enabled: false
