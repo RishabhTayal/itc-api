@@ -50,7 +50,7 @@ get '/apps' do
   end.to_json
 end
 
-# Gets screenshots of live_version app
+# Gets metadata of the app
 get '/app/metadata' do
   content_type :json
   username = request.env['HTTP_USERNAME']
@@ -59,25 +59,73 @@ get '/app/metadata' do
   Spaceship::Tunes.login(username, password)
 
   version = Spaceship::Tunes::Application.find(bundle_id)
-  {
-    version: version.live_version.version,
-    copyright: version.live_version.copyright,
-    status: version.live_version.app_status,
-    islive: version.live_version.is_live,
-    watchos: version.live_version.supports_apple_watch,
-    betaTesting: version.live_version.can_beta_test,
-    lang: version.live_version.languages,
-    keywords: version.live_version.keywords,
-    support: version.live_version.support_url,
-    marketing: version.live_version.marketing_url,
+  hash_map = Hash.new([])
 
-    primarycat: version.details.primary_category,
-    primarycatfirstsub: version.details.primary_first_sub_category,
-    primarycatsecondsub: version.details.primary_second_sub_category,
-    secondarycat: version.details.secondary_category,
-    secondarycatfirstsub: version.details.secondary_first_sub_category,
-    secondarycatsecondsub: version.details.secondary_second_sub_category
-  }.to_json
+  live_version = version.live_version
+  hash_map[:live_version] = live_version.version unless live_version.nil?
+  edit_version = version.edit_version
+  hash_map[:edit_version] = edit_version.version unless edit_version.nil?
+  hash_map[:primarycat] = version.details.primary_category
+  hash_map[:primarycatfirstsub] = version.details.primary_first_sub_category
+  hash_map[:primarycatsecondsub] = version.details.primary_second_sub_category
+  hash_map[:secondarycat] = version.details.secondary_category
+  hash_map[:secondarycatfirstsub] = version.details.secondary_first_sub_category
+  hash_map[:secondarycatsecondsub] = version.details.secondary_second_sub_category
+  hash_map.to_json
+end
+
+get '/app/live_version_metadata' do
+  content_type :json
+  username = request.env['HTTP_USERNAME']
+  password = request.env['HTTP_PASSWORD']
+  bundle_id = params[:bundle_id]
+  Spaceship::Tunes.login(username, password)
+
+  version = Spaceship::Tunes::Application.find(bundle_id)
+  hash_map = Hash.new([])
+
+  # if there is a live_version of the app
+  live_version = version.live_version
+  unless live_version.nil?
+    hash_map[:version] = live_version.version
+    hash_map[:copyright] = live_version.copyright
+    hash_map[:status] = live_version.app_status
+    hash_map[:islive] = live_version.is_live
+    hash_map[:watchos] = live_version.supports_apple_watch
+    hash_map[:betaTesting] = live_version.can_beta_test
+    hash_map[:lang] = live_version.languages
+    hash_map[:keywords] = live_version.keywords
+    hash_map[:support] = live_version.support_url
+    hash_map[:marketing] = live_version.marketing_url
+  end
+  hash_map.to_json
+end
+
+get '/app/edit_version_metadata' do
+  content_type :json
+  username = request.env['HTTP_USERNAME']
+  password = request.env['HTTP_PASSWORD']
+  bundle_id = params[:bundle_id]
+  Spaceship::Tunes.login(username, password)
+
+  version = Spaceship::Tunes::Application.find(bundle_id)
+  hash_map = Hash.new([])
+
+  # if there is a edit_version of the app
+  edit_version = version.edit_version
+  unless edit_version.nil?
+    hash_map[:version] = edit_version.version
+    hash_map[:copyright] = edit_version.copyright
+    hash_map[:status] = edit_version.app_status
+    hash_map[:islive] = edit_version.is_live
+    hash_map[:watchos] = edit_version.supports_apple_watch
+    hash_map[:betaTesting] = edit_version.can_beta_test
+    hash_map[:lang] = edit_version.languages
+    hash_map[:keywords] = edit_version.keywords
+    hash_map[:support] = edit_version.support_url
+    hash_map[:marketing] = edit_version.marketing_url
+  end
+  hash_map.to_json
 end
 
 # Get list of ratings for a specified app with bundle_id
