@@ -33,10 +33,6 @@ get '/apps' do
   client = Spaceship::Tunes.login(username, password)
   client.team_id = request.env['HTTP_TEAM_ID']
   all_apps = Spaceship::Tunes::Application.all
-  # live_apps = all_apps.select { |app|
-  # 	# app.live_version != nil
-  # 	app.app_icon_preview_url != nil
-  # }
   all_apps = all_apps.sort_by(&:name)
   all_apps.collect do |a|
     {
@@ -74,6 +70,7 @@ get '/app/metadata' do
   hash_map.to_json
 end
 
+# Get metadata for the live version of the app
 get '/app/live_version_metadata' do
   content_type :json
   username = request.env['HTTP_USERNAME']
@@ -101,6 +98,7 @@ get '/app/live_version_metadata' do
   hash_map.to_json
 end
 
+# Get metadata for the edit version of the app
 get '/app/edit_version_metadata' do
   content_type :json
   username = request.env['HTTP_USERNAME']
