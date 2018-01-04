@@ -73,50 +73,11 @@ get '/app/metadata' do
         secondarycat: version.details.secondary_category,
         secondarycatfirstsub: version.details.secondary_first_sub_category,
         secondarycatsecondsub: version.details.secondary_second_sub_category,
-        
-		# url: ss.url,
-		# sort_order: ss.sort_order,
-		# language: ss.language,
-		# is_imessage: ss.is_imessage,
-		# device_type: ss.device_type
 	}.to_json
 end
 
 # Get list of ratings for a specified app with bundle_id
 get '/ratings' do
-<<<<<<< HEAD
-	content_type :json
-	username = request.env['HTTP_USERNAME']
-	password = request.env['HTTP_PASSWORD']
-	bundle_id = params[:bundle_id]
-	store_front = params[:store_front]
-	if store_front == nil 
-		store_front = ""
-	end
-	client = Spaceship::Tunes.login(username, password)
-    client.team_id = request.env['HTTP_TEAM_ID']
-    
-	ratings = Spaceship::Tunes::Application.find(bundle_id).ratings
-	ratings.reviews(store_front).collect { |review|
-		{
-			id: review.id,
-			title: review.title,
-			rating: review.rating,
-			review: review.review,
-			store_front: review.store_front,
-			total_views: review.total_views,
-			raw_developer_response: review.raw_developer_response,
-			last_modified: review.last_modified,
-			developer_response: {
-				id: review.developer_response.id,
-				response: review.developer_response.response,
-				last_modified: review.developer_response.last_modified,
-				hidden: review.developer_response.hidden,
-      			state: review.developer_response.state
-			}
-		}
-	}.to_json
-=======
   content_type :json
   username = request.env['HTTP_USERNAME']
   password = request.env['HTTP_PASSWORD']
@@ -144,7 +105,6 @@ get '/ratings' do
       }
     }
   end.to_json
->>>>>>> upstream/master
 end
 
 # Returns
@@ -214,34 +174,6 @@ get '/app_status' do
 end
 
 # Get List of testers
-get '/testers' do
-<<<<<<< HEAD
-	content_type :json
-	username = request.env['HTTP_USERNAME']
-	password = request.env['HTTP_PASSWORD']
-	bundle_id = params[:bundle_id]
-	puts bundle_id
-	client = Spaceship::TunesClient.new
-	client.login(username, password)
-	client.team_id = request.env['HTTP_TEAM_ID']
-	# Spaceship::Tunes.client.team_id = params[:team_id]
-	# Spaceship::Portal.login(username, password)
-	# Spaceship::Portal.client.team_id = params[:team_id]
-	# puts client.team_id
-	apps = client.applications.find(bundle_id)
-	# p app.to_json
-	for app in apps
-		p app.to_json
-	end
-	testers = Spaceship::TestFlight::Tester.all(app_id: apps.first["adamId"])
-	testers.collect { |tester|
-		{
-			first_name: tester.first_name,
-			last_name: tester.last_name,
-			email: tester.email
-		}
-	}.to_json
-=======
   content_type :json
   username = request.env['HTTP_USERNAME']
   password = request.env['HTTP_PASSWORD']
@@ -264,5 +196,4 @@ get '/testers' do
       email: tester.email
     }
   end.to_json
->>>>>>> upstream/master
 end
