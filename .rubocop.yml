@@ -1,5 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.0
+  Exclude:
+    - './vendor/**/*'
 
 AllCops:
   Exclude:
