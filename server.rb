@@ -56,16 +56,16 @@ get '/app/metadata' do
   bundle_id = params[:bundle_id]
   Spaceship::Tunes.login(username, password)
 
-  version = Spaceship::Tunes::Application.find(bundle_id)
+  app = Spaceship::Tunes::Application.find(bundle_id)
   hash_map = Hash.new([])
 
-  live_version = version.live_version
+  live_version = app.live_version
   hash_map[:live_version] = live_version.version unless live_version.nil?
 
-  edit_version = version.edit_version
+  edit_version = app.edit_version
   hash_map[:edit_version] = edit_version.version unless edit_version.nil?
 
-  details = version.details
+  details = app.details
   hash_map[:primarycat] = details.primary_category
   hash_map[:primarycatfirstsub] = details.primary_first_sub_category
   hash_map[:primarycatsecondsub] = details.primary_second_sub_category
@@ -83,11 +83,11 @@ get '/app/live_version_metadata' do
   bundle_id = params[:bundle_id]
   Spaceship::Tunes.login(username, password)
 
-  version = Spaceship::Tunes::Application.find(bundle_id)
+  app = Spaceship::Tunes::Application.find(bundle_id)
   hash_map = Hash.new([])
 
   # if there is a live_version of the app
-  live_version = version.live_version
+  live_version = app.live_version
   unless live_version.nil?
     hash_map[:version] = live_version.version
     hash_map[:copyright] = live_version.copyright
@@ -111,11 +111,11 @@ get '/app/edit_version_metadata' do
   bundle_id = params[:bundle_id]
   Spaceship::Tunes.login(username, password)
 
-  version = Spaceship::Tunes::Application.find(bundle_id)
+  app = Spaceship::Tunes::Application.find(bundle_id)
   hash_map = Hash.new([])
 
   # if there is a edit_version of the app
-  edit_version = version.edit_version
+  edit_version = app.edit_version
   unless edit_version.nil?
     hash_map[:version] = edit_version.version
     hash_map[:copyright] = edit_version.copyright
