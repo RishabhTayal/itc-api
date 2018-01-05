@@ -9,7 +9,7 @@ warn('PR is classed as Work in Progress') if github.pr_title.include? '[WIP]'
 warn('Big PR') if git.lines_of_code > 500
 
 # - > +
-message("Good job on cleaning the code") if git.deletions > git.insertions
+message('Good job on cleaning the code') if git.deletions > git.insertions
 
 # Don't let testing shortcuts get into master by accident
 raise('fdescribe left in tests') if `grep -r fdescribe specs/ `.length > 1
