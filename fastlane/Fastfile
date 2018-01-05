@@ -11,7 +11,7 @@ lane :release do
   version = version_json['version']
 
   changelog = read_changelog
-  stamp_changelog(section_identifier: 'Version #{version}')
+  stamp_changelog(section_identifier: "Version #{version}")
 
   # Then push to git remote
   #
