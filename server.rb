@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'spaceship'
 require 'json'
+require './version_api.rb'
 require './testflight.rb'
 require './appstore.rb'
 
