@@ -14,5 +14,4 @@ get '/is_latest_api_version' do
   tag_name = json['tag_name']
 
   (tag_name == version).to_json
-
 end
