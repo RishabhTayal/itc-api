@@ -1,5 +1,4 @@
 # itc-api
 
-##Unreleased
-
-Added Metadata api part
+## Unreleased
+- Added Metadata api part
