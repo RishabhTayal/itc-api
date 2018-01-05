@@ -61,10 +61,10 @@ get '/app/metadata' do
 
   live_version = version.live_version
   hash_map[:live_version] = live_version.version unless live_version.nil?
-  
+
   edit_version = version.edit_version
   hash_map[:edit_version] = edit_version.version unless edit_version.nil?
-  
+
   details = version.details
   hash_map[:primarycat] = details.primary_category
   hash_map[:primarycatfirstsub] = details.primary_first_sub_category
@@ -138,10 +138,10 @@ get '/build_trains' do
   password = request.env['HTTP_PASSWORD']
   bundle_id = params[:bundle_id]
   Spaceship::Tunes.login(username, password)
-  
+
   app = Spaceship::Tunes::Application.find(bundle_id)
   train = app.build_trains
-  
+
   hash_map = Hash.new([])
   hash_map[:versions] = train.versions
   hash_map.to_json
