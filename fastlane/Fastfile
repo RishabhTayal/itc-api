@@ -6,7 +6,12 @@ lane :release do
   # ensure_git_branch(branch: 'master')
   git_pull
 
-  version = prompt(text: 'Please enter the version number')
+file = File.read('.././version.json')
+version_json = JSON.parse(file)
+version = version_json["version"]
+require 'pry'
+binding.pry
+  # version = #prompt(text: 'Please enter the version number')
 
   changelog = read_changelog
   stamp_changelog(section_identifier: "Version version_number")
