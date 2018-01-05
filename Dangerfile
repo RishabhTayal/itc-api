@@ -12,6 +12,9 @@ unless git.modified_files.include?('./version.json')
   warn('api version was not updated')
 end
 
+# - > +
+message('Good job on cleaning the code') if git.deletions > git.insertions
+
 # Don't let testing shortcuts get into master by accident
 raise('fdescribe left in tests') if `grep -r fdescribe specs/ `.length > 1
 raise('fit left in tests') if `grep -r fit specs/ `.length > 1
