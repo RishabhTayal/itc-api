@@ -61,14 +61,17 @@ get '/app/metadata' do
 
   live_version = version.live_version
   hash_map[:live_version] = live_version.version unless live_version.nil?
+  
   edit_version = version.edit_version
   hash_map[:edit_version] = edit_version.version unless edit_version.nil?
-  hash_map[:primarycat] = version.details.primary_category
-  hash_map[:primarycatfirstsub] = version.details.primary_first_sub_category
-  hash_map[:primarycatsecondsub] = version.details.primary_second_sub_category
-  hash_map[:secondarycat] = version.details.secondary_category
-  hash_map[:secondarycatfirstsub] = version.details.secondary_first_sub_category
-  hash_map[:secondarycatsecondsub] = version.details.secondary_second_sub_category
+  
+  details = version.details
+  hash_map[:primarycat] = details.primary_category
+  hash_map[:primarycatfirstsub] = details.primary_first_sub_category
+  hash_map[:primarycatsecondsub] = details.primary_second_sub_category
+  hash_map[:secondarycat] = details.secondary_category
+  hash_map[:secondarycatfirstsub] = details.secondary_first_sub_category
+  hash_map[:secondarycatsecondsub] = details.secondary_second_sub_category
   hash_map.to_json
 end
 
@@ -128,19 +131,20 @@ get '/app/edit_version_metadata' do
   hash_map.to_json
 end
 
-# Returns
+# Returns builds submitted for the app
 get '/build_trains' do
   content_type :json
   username = request.env['HTTP_USERNAME']
   password = request.env['HTTP_PASSWORD']
   bundle_id = params[:bundle_id]
   Spaceship::Tunes.login(username, password)
-  # require "pry"
-  # binding.pry
+  
   app = Spaceship::Tunes::Application.find(bundle_id)
   train = app.build_trains
-  puts train
-  train.to_json
+  
+  hash_map = Hash.new([])
+  hash_map[:versions] = train.versions
+  hash_map.to_json
 end
 
 # Returns list of all processing builds from iTC
