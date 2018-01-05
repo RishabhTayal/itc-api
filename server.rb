@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'spaceship'
 require 'json'
-require './version.rb'
+require './version-api.rb'
 
 get '/' do
   content_type :json
