@@ -27,3 +27,25 @@ get '/testers' do
     }
   end.to_json
 end
+
+# Creating new testers
+post '/tester' do
+  content_type :json
+  username = request.env['HTTP_USERNAME']
+  password = request.env['HTTP_PASSWORD']
+  bundle_id = params[:bundle_id]
+  email = params[:email]
+  first_name = params[:first_name]
+  last_name = params[:last_name]
+
+  client = Spaceship::TunesClient.new
+  client.login(username, password)
+  client.team_id = request.env['HTTP_TEAM_ID']
+
+  Spaceship::TestFlight::Tester.create_app_level_tester(
+    app_id: bundle_id,
+    email: email,
+    first_name: first_name,
+    last_name: last_name
+  )
+end
