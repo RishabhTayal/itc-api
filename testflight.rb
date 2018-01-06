@@ -17,7 +17,7 @@ get '/testers' do
   # Spaceship::Portal.client.team_id = params[:team_id]
   # puts client.team_id
   apps = client.applications.find(bundle_id)
-  # p app.to_json
+  p app.to_json
   testers = Spaceship::TestFlight::Tester.all(app_id: apps.first['adamId'])
   testers.collect do |tester|
     {

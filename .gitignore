@@ -1,3 +1,5 @@
 .env
 
 fastlane/report.xml
+
+.DS_Store
