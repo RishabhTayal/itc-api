@@ -13,7 +13,7 @@ get '/testers' do
   client = Spaceship::Tunes.client
   client.team_id = request.env['HTTP_TEAM_ID']
   apps = Spaceship::Tunes::Application.all
-  myapp = apps.select { |a| a.bundle_id.casecmp(bundle_id).zero?   }
+  myapp = apps.select { |a| a.bundle_id.casecmp(bundle_id).zero? }
   testers = Spaceship::TestFlight::Tester.all(app_id: myapp.first.apple_id)
   testers.collect do |tester|
     {
