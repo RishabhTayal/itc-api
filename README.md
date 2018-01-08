@@ -1,6 +1,7 @@
 # itc-api
 
 [![Build Status](https://travis-ci.org/RishabhTayal/itc-api.svg?branch=master)](https://travis-ci.org/RishabhTayal/itc-api)
+[![Version](https://img.shields.io/github/release/RishabhTayal/itc-api.svg)](https://github.com/RishabhTayal/itc-api/releases/latest)
 [![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/ReviewMonitor/blob/master/LICENSE)
 [![Contact](https://img.shields.io/badge/contact-%40Rishabh_Tayal-3a8fc1.svg)](https://twitter.com/Rishabh_Tayal)
 
