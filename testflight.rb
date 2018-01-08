@@ -8,17 +8,13 @@ get '/testers' do
   username = request.env['HTTP_USERNAME']
   password = request.env['HTTP_PASSWORD']
   bundle_id = params[:bundle_id]
-  puts bundle_id
-  client = Spaceship::TunesClient.new
-  client.login(username, password)
+
+  Spaceship::Tunes.login(username, password)
+  client = Spaceship::Tunes.client
   client.team_id = request.env['HTTP_TEAM_ID']
-  # Spaceship::Tunes.client.team_id = params[:team_id]
-  # Spaceship::Portal.login(username, password)
-  # Spaceship::Portal.client.team_id = params[:team_id]
-  # puts client.team_id
-  apps = client.applications.find(bundle_id)
-  p app.to_json
-  testers = Spaceship::TestFlight::Tester.all(app_id: apps.first['adamId'])
+  apps = Spaceship::Tunes::Application.all
+  myapp = apps.select { |a| a.bundle_id.casecmp(bundle_id).zero? }
+  testers = Spaceship::TestFlight::Tester.all(app_id: myapp.first.apple_id)
   testers.collect do |tester|
     {
       first_name: tester.first_name,
@@ -26,4 +22,26 @@ get '/testers' do
       email: tester.email
     }
   end.to_json
+end
+
+# Creating new testers
+post '/tester' do
+  content_type :json
+  username = request.env['HTTP_USERNAME']
+  password = request.env['HTTP_PASSWORD']
+  bundle_id = params[:bundle_id]
+  email = params[:email]
+  first_name = params[:first_name]
+  last_name = params[:last_name]
+
+  Spaceship::Tunes.login(username, password)
+  client = Spaceship::Tunes.client
+  client.team_id = request.env['HTTP_TEAM_ID']
+
+  Spaceship::TestFlight::Tester.create_app_level_tester(
+    app_id: bundle_id,
+    email: email,
+    first_name: first_name,
+    last_name: last_name
+  )
 end
