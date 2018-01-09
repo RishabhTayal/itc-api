@@ -41,7 +41,6 @@ post '/tester' do
   apps = Spaceship::Tunes::Application.all
   myapp = apps.select { |a| a.bundle_id.casecmp(bundle_id).zero? }
   
-  puts email
   Spaceship::TestFlight::Tester.create_app_level_tester(
     app_id: myapp.first.apple_id,
     email: email,
