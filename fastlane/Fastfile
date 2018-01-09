@@ -15,7 +15,7 @@ lane :release do
 
   # Then push to git remote
   #
-  git_commit(path: '.', message: 'Version Bump')
+  # git_commit(path: '.', message: 'Version Bump')
   push_to_git_remote
 
   # Preparing GitHub Release
