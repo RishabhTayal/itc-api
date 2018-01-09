@@ -38,10 +38,14 @@ post '/tester' do
   client = Spaceship::Tunes.client
   client.team_id = request.env['HTTP_TEAM_ID']
 
+  apps = Spaceship::Tunes::Application.all
+  myapp = apps.select { |a| a.bundle_id.casecmp(bundle_id).zero? }
+
   Spaceship::TestFlight::Tester.create_app_level_tester(
-    app_id: bundle_id,
+    app_id: myapp.first.apple_id,
     email: email,
     first_name: first_name,
     last_name: last_name
   )
+  { success: true }.to_json
 end
