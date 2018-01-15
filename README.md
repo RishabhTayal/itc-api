@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/RishabhTayal/itc-api.svg?branch=master)](https://travis-ci.org/RishabhTayal/itc-api)
 [![Version](https://img.shields.io/github/release/RishabhTayal/itc-api.svg)](https://github.com/RishabhTayal/itc-api/releases/latest)
-[![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/ReviewMonitor/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/RishabhTayal/itc-api.svg)](https://GitHub.com/RishabhTayal/itc-api/graphs/contributors/)
+[![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/itc-api/blob/master/LICENSE)
 [![Contact](https://img.shields.io/badge/contact-%40Rishabh_Tayal-3a8fc1.svg)](https://twitter.com/Rishabh_Tayal)
 
 Backend API project for [ReviewMonitor](https://github.com/RishabhTayal/ReviewMonitor/) iOS app.
