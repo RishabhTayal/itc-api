@@ -100,6 +100,16 @@ get '/app/live_version_metadata' do
     hash_map[:keywords] = live_version.keywords
     hash_map[:support] = live_version.support_url
     hash_map[:marketing] = live_version.marketing_url
+
+    screenshots = []
+    live_version.screenshots['en-US'].each do |screenshot|
+      p screenshot
+      screenshot_hash = Hash.new([])
+      screenshot_hash[:original_file_name] = screenshot.original_file_name
+      screenshot_hash[:url] = screenshot.url
+      screenshots.push(screenshot_hash)
+    end
+    hash_map[:screenshots] = screenshots
   end
   hash_map.to_json
 end
